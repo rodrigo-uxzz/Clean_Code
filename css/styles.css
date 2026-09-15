@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.language-logo {
+  width: 50px;
+  height: 50px;
+}
+
+nav{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgb(33, 39, 59);
+  display: flex;
+  height: 80px;
+  align-items: center;
+}
+
+.logo{
+  width: 80px;
+  height: 70px;
+}
+
+.sign-in-btn {
+    position: absolute;
+    right: 30px ;
+    width: 110px;
+    height: 45px;
+    display: flex;
+    justify-content: space-evenly ;
+    align-items: center;
+    border-radius: 60px;
+    border: none;
+    background-color: #16526C;
+    color: white;
+    cursor: pointer;
+    
+}
+
+.img-Button{
+  width: auto;
+  height: 35px;
+}
+
+.logo-texto{
+  color: #2b7992;
+  font-family: host-grotesk, sans-serif;
+  font-size: 35px;
+  margin-left: 10px;
+}
+
+.container{
+  display:flex;
+  background-color: #16526C;
+  color: white; 
+  height: 100%;
+  font-family: goldman, sans-serif;
+  text-shadow: 2px 2px 4px black;
+}
+
+.code-img{
+  width: 650px;
+  height: 450px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+    
+}
+
+.pt1{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-left: 40px;
+  margin-top: 40px;
+  padding-top: 50px;
+  margin-left: 80px;
+  gap: 40px;
+  
+}
+
+.buttons{
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.pt2{
+  display: flex;
+  height: 85vh;
+  width: 100%;
+  margin-left: 40px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.language-logos {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;  
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.titulo{
+  font-size: 50px;
+  text-shadow: 2px 2px 4px black;
+}
+
+
+
+.Comece{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  width: 170px;
+  height: 42px;
+
+  background-color: #20273B;
+  color: white;
+
+
+  border: 2px solid #087EAD;
+  border-radius: 25px;
+
+  text-decoration: none;
+    font-family: 'Goldman', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+}
+
+.Comece img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: hue-rotate(180deg) brightness(0) invert(1);
+}
+
+
+.Saibamais{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  width: 170px;
+  height: 42px;
+
+  background-color: #20273B;
+  color: white;
+
+
+  border: 2px solid #087EAD;
+  border-radius: 25px;
+
+  text-decoration: none;
+    font-family: 'Goldman', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+}
+
+
+.Saibamais img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: hue-rotate(180deg) brightness(0) invert(1);
+}
+
+
+/* SESSÃO 2 */
+
+
+.container2 {
+  display: flex;
+  background-color: #21273B;
+  flex-direction: column;
+  color: white;
+  height: 100%;
+  font-family: goldman, sans-serif;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 50px 0 50px;
+}
+
+
+
+
+.passos{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 40px;
+}
+
+.passo-icon{
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+  margin-bottom: 20px;
+}
+
+.icon-passo{
+  width: 60px;
+  height: 60px;
+}
+
+.passo {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  text-align: center;
+}
+
+.passo2 {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  text-align: center;
+}
+
+.titulo2{
+  font-size: 50px;
+  text-shadow: 2px 2px 4px black;
+  
+}
+
+/* SESSÃO 3 */
+
+
+.container3 {
+  background-color: #ffffff;
+  min-height: 400px;
+  position: relative;
+  font-family: goldman, sans-serif;
+  padding-top: 160px;
+  overflow: hidden;
+}
+
+.wave-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  display: block;
+}
+
+.analise{
+  display: flex;
+  padding: 60px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.analise-img{
+  width: 700px;
+  height: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+}
+
+.analise-text{
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  color: #21273B;
+  text-align: center;
+  
+}
+
+.Titulosessão3{
+  font-size: 50px;
+  text-shadow: 2px 2px 4px rgb(192, 192, 192);
+  margin-bottom: 30px;
+}
+
+.analise-list{
+  align-items: center;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size: 30px;
+  text-align: left;
+}
+
+
+
+
+.container4{
+  display: flex;
+  flex-direction: column;
+  background-color: #20273B;
+  min-height: 400px;
+  position: relative;
+  font-family: goldman, sans-serif;
+  padding-top: 160px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: #21273B 2px 2px 4px;
+}
+
+.wave-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  display: block;
+}
+
+.comparacao-text {
+  color:white;
+  font-size: 30px;
+}
+
+.comparacao{
+  display: flex;
+  justify-content: space-around ;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  padding: 40px;
+}
+
+.comparacao-img{
+  width: 400px;
+  height: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+}
+
+.container5{
+  display: flex;
+  flex-direction: column;
+  background color:16526C;
+}
