@@ -1,47 +1,39 @@
 const express = require('express');
 const path = require('path');
+// 1. Atualizamos o caminho do database
+const supabase = require('./src/config/database'); 
+
 const app = express();
 
-const supabase = require('./database');
-
-// Permite que o servidor entenda JSON enviado pelo frontend
 app.use(express.json());
 
-// Serve os arquivos estáticos (CSS, imagens e HTML)
-app.use(express.static(__dirname));
+// 2. Avisamos o Express que os arquivos estáticos (CSS, IMG) agora estão na pasta 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Rota principal: entrega a landing page
+// 3. Atualizamos as rotas para buscar os HTMLs dentro da pasta 'public'
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Rota da página de login
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login.html'));
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// Rota da API que valida o login
+// A rota da API continua igual
 app.post('/api/login', async (req, res) => {
     const { email, senha } = req.body;
     
-    // Consulta a tabela 'usuarios' no Supabase
     const { data, error } = await supabase
         .from('usuarios')
         .select('role')
         .eq('email', email)
         .eq('senha', senha)
-        .single(); // Espera retornar apenas 1 usuário
+        .single(); 
 
-    // LIGANDO O LOG DE ERRO AQUI:
-    if (error) {
-        console.log("Erro retornado pelo Supabase:", error);
-    }
-    
     if (error || !data) {
         return res.status(401).json({ success: false, message: 'E-mail ou senha inválidos.' });
     }
 
-    // Retorna o sucesso e a 'role' para o frontend redirecionar corretamente
     res.json({ 
         success: true, 
         role: data.role, 
@@ -50,6 +42,6 @@ app.post('/api/login', async (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+app.listen(PORT, '127.0.0.1', () => {
+    console.log(`Servidor rodando internamente em http://127.0.0.1:${PORT}`);
 });
