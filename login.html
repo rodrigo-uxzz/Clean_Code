@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Clean Code</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="img/logo-mark.png" />
+  </head>
+  <body class="login-body">
+    <!-- Navbar reaproveitada do index.html -->
+    <nav>
+      <img class="logo" src="./img/logo-mark.png" alt="Logo" />
+      <p class="logo-texto">Clean Code</p>
+    </nav>
+
+    <div class="login-container">
+      <div class="login-box">
+        <h2 class="login-titulo">Acesse sua conta</h2>
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required placeholder="Digite seu e-mail" />
+          </div>
+          <div class="input-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" required placeholder="Digite sua senha" />
+          </div>
+          <button type="submit" class="Comece btn-login">Entrar</button>
+        </form>
+        <p id="mensagemErro" class="mensagem-erro"></p>
+      </div>
+    </div>
+
+    <script>
+      // Conectando o formulário com a API em Node
+      document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert(result.message);
+          window.location.href = '/'; // Redireciona após login
+        } else {
+          document.getElementById('mensagemErro').innerText = result.message;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -529,3 +529,78 @@ nav{
     margin: 0;
     font-size: 14px;
 }
+
+/* --- ESTILOS DA PÁGINA DE LOGIN --- */
+.login-body {
+  background-color: #21273B;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Host Grotesk', sans-serif;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  width: 400px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: white;
+  text-align: center;
+}
+
+.login-titulo {
+  font-family: 'Goldman', sans-serif;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #35AAA9;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #c0c0c0;
+}
+
+.input-group input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #16526C;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #35AAA9;
+}
+
+.btn-login {
+  width: 100%;
+  margin-top: 10px;
+  height: 45px;
+  font-size: 16px;
+}
+
+.mensagem-erro {
+  color: #ff4c4c;
+  margin-top: 15px;
+  font-size: 14px;
+  height: 20px;
+}
