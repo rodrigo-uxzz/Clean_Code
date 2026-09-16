@@ -48,7 +48,12 @@
         const result = await response.json();
         if (result.success) {
           alert(result.message);
-          window.location.href = '/'; // Redireciona após login
+          // Redireciona com base no tipo de usuário
+          if (result.role === 'aluno') {
+            window.location.href = '/aluno.html';
+          } else if (result.role === 'professor') {
+            window.location.href = '/professor.html';
+          }
         } else {
           document.getElementById('mensagemErro').innerText = result.message;
         }

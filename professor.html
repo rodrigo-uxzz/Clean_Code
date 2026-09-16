@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Professor - Mentor de Clean Code</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="login-body">
+    <nav>
+      <img class="logo" src="./img/logo-mark.png" alt="Logo" />
+      <p class="logo-texto">Clean Code - Área do Professor</p>
+      <button class="sign-in-btn" onclick="window.location.href='/'">Sair</button>
+    </nav>
+
+    <div class="login-container" style="flex-direction: column; padding: 40px;">
+      <h2 class="login-titulo" style="color: white;">Visão Geral da Turma</h2>
+      
+      <div style="width: 80%; max-width: 900px; display: flex; gap: 20px;">
+        
+        <!-- Card de Aluno -->
+        <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px solid #16526C;">
+          <h3 style="color: #35AAA9;">Aluno Teste</h3>
+          <p style="color: #c0c0c0; font-size: 14px; margin-top: 10px;">Última submissão: Sistema de Cadastro</p>
+          <hr style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
+          <h4 style="color: #ff4c4c;">Pontos de Atenção (IA):</h4>
+          <ul style="color: #c0c0c0; font-size: 14px; margin-left: 20px; margin-top: 10px;">
+            <li>Funções muito longas (acima de 30 linhas).</li>
+            <li>Nomenclatura de variáveis confusa.</li>
+          </ul>
+          <h4 style="color: #35AAA9; margin-top: 15px;">Pontos Positivos:</h4>
+          <ul style="color: #c0c0c0; font-size: 14px; margin-left: 20px; margin-top: 10px;">
+            <li>Indentação correta.</li>
+            <li>Tratamento de exceções implementado.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

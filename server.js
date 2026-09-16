@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+const supabase = require('./database');
+
 // Permite que o servidor entenda JSON enviado pelo frontend
 app.use(express.json());
 
@@ -19,15 +21,32 @@ app.get('/login', (req, res) => {
 });
 
 // Rota da API que valida o login
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { email, senha } = req.body;
     
-    // Lógica básica de validação (mock)
-    if (email === 'admin@cleancode.com' && senha === '123456') {
-        res.json({ success: true, message: 'Login realizado com sucesso!' });
-    } else {
-        res.status(401).json({ success: false, message: 'E-mail ou senha inválidos.' });
+    // Consulta a tabela 'usuarios' no Supabase
+    const { data, error } = await supabase
+        .from('usuarios')
+        .select('role')
+        .eq('email', email)
+        .eq('senha', senha)
+        .single(); // Espera retornar apenas 1 usuário
+
+    // LIGANDO O LOG DE ERRO AQUI:
+    if (error) {
+        console.log("Erro retornado pelo Supabase:", error);
     }
+    
+    if (error || !data) {
+        return res.status(401).json({ success: false, message: 'E-mail ou senha inválidos.' });
+    }
+
+    // Retorna o sucesso e a 'role' para o frontend redirecionar corretamente
+    res.json({ 
+        success: true, 
+        role: data.role, 
+        message: `Bem-vindo! Acesso liberado como ${data.role}.` 
+    });
 });
 
 const PORT = 3000;

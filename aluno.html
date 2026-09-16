@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Aluno - Mentor de Clean Code</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="login-body">
+    <nav>
+      <img class="logo" src="./img/logo-mark.png" alt="Logo" />
+      <p class="logo-texto">Clean Code - Área do Aluno</p>
+      <button class="sign-in-btn" onclick="window.location.href='/'">Sair</button>
+    </nav>
+
+    <div class="login-container" style="flex-direction: column; padding: 40px;">
+      <h2 class="login-titulo" style="color: white;">Envie seu Algoritmo</h2>
+      
+      <textarea 
+        id="codigoInput" 
+        rows="15" 
+        style="width: 80%; max-width: 800px; padding: 15px; border-radius: 8px; background: rgba(0,0,0,0.3); color: #35AAA9; border: 1px solid #16526C; font-family: monospace;" 
+        placeholder="Cole seu código Java, Python, etc. aqui..."></textarea>
+      
+      <button class="Comece btn-login" style="width: 200px; margin-top: 20px;">Analisar Código</button>
+
+      <div style="margin-top: 30px; width: 80%; max-width: 800px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px dashed #35AAA9;">
+        <h3 style="color: #35AAA9; font-family: 'Goldman', sans-serif;">Feedback do Mentor:</h3>
+        <p style="color: #c0c0c0; margin-top: 10px;">A IA processará a estrutura e retornará as sugestões aqui...</p>
+      </div>
+    </div>
+  </body>
+</html>
