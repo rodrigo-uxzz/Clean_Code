@@ -4,38 +4,135 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel do Professor - Mentor de Clean Code</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="css/professor.css" />
+    <link rel="icon" type="image/x-icon" href="img/logo-mark.png" />
   </head>
-  <body class="login-body">
-    <nav>
-      <img class="logo" src="./img/logo-mark.png" alt="Logo" />
-      <p class="logo-texto">Clean Code - Área do Professor</p>
-      <button class="sign-in-btn" onclick="window.location.href='/'">Sair</button>
-    </nav>
-
-    <div class="login-container" style="flex-direction: column; padding: 40px;">
-      <h2 class="login-titulo" style="color: white;">Visão Geral da Turma</h2>
-      
-      <div style="width: 80%; max-width: 900px; display: flex; gap: 20px;">
-        
-        <!-- Card de Aluno -->
-        <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px solid #16526C;">
-          <h3 style="color: #35AAA9;">Aluno Teste</h3>
-          <p style="color: #c0c0c0; font-size: 14px; margin-top: 10px;">Última submissão: Sistema de Cadastro</p>
-          <hr style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
-          <h4 style="color: #ff4c4c;">Pontos de Atenção (IA):</h4>
-          <ul style="color: #c0c0c0; font-size: 14px; margin-left: 20px; margin-top: 10px;">
-            <li>Funções muito longas (acima de 30 linhas).</li>
-            <li>Nomenclatura de variáveis confusa.</li>
-          </ul>
-          <h4 style="color: #35AAA9; margin-top: 15px;">Pontos Positivos:</h4>
-          <ul style="color: #c0c0c0; font-size: 14px; margin-left: 20px; margin-top: 10px;">
-            <li>Indentação correta.</li>
-            <li>Tratamento de exceções implementado.</li>
-          </ul>
+  <body class="prof-body">
+    <div class="prof-layout">
+      <aside class="prof-sidebar" id="profSidebar">
+        <div class="prof-logo">
+          <img src="./img/logo-mark.png" alt="Logo" />
+          <span>Clean Code</span>
         </div>
 
-      </div>
+        <div class="prof-usuario">
+          <div class="prof-avatar">
+            <img class="img-avatar" src="./img/avatar.png" alt="Avatar do professor" />
+
+
+          </div>
+          <span>Prof Ademilson</span>
+        </div>
+
+        <nav class="prof-menu">
+          <a href="#" class="ativo">Meus Alunos</a>
+          <a href="#">Estatísticas</a>
+          <a href="#">Minhas turmas</a>
+        </nav>
+
+        <button class="prof-logout" onclick="window.location.href = '/'">
+          Logout
+          <img
+                    class="img-logout"
+                    src="./img/enter-removebg-preview.png"
+                    alt=""
+                >
+        </button>
+      </aside>
+
+      <main class="prof-main">
+        <header class="prof-cabecalho">
+          <h1>Painel de alunos</h1>
+          <p>Monitore o progresso e as violações dos seus alunos</p>
+        </header>
+
+        <section class="prof-cards">
+          <div class="prof-card">
+            <span>Total de alunos</span>
+            <strong>16</strong>
+          </div>
+          <div class="prof-card">
+            <span>Submissões este mês</span>
+            <strong>58</strong>
+          </div>
+          <div class="prof-card">
+            <span>Média de violações</span>
+            <strong>4</strong>
+          </div>
+        </section>
+
+        <section class="prof-filtros">
+          <div class="prof-busca">
+            <span>🔍</span>
+            <input type="text" placeholder="Buscar aluno..." />
+          </div>
+          <select class="prof-select">
+            <option>Todas as turmas</option>
+            <option>ADS204A</option>
+            <option>ADS204B</option>
+          </select>
+          <span class="prof-contagem">6 Alunos</span>
+        </section>
+
+        <section class="prof-tabela-card">
+          <div class="prof-linha prof-linha-cabecalho">
+            <span>Aluno</span>
+            <span>Turma</span>
+            <span>Última Submissão</span>
+            <span>Submissões</span>
+            <span>Méd. Violações</span>
+            <span>Ações</span>
+          </div>
+
+          <div class="prof-linha">
+            <div class="prof-aluno" data-label="Aluno">
+              <div class="prof-avatar-pequeno">👤</div>
+              <span>Daniel Cavalcante</span>
+            </div>
+
+            <span data-label="Turma">ADS204A</span>
+            <span data-label="Última submissão">09/10/2026</span>
+            <span data-label="Submissões">67</span>
+            <span class="prof-violacao" data-label="Méd. violações">ⓘ 2 ↘</span>
+
+            <button class="prof-acoes" type="button" data-label="Ações">
+              ☰
+            </button>
+          </div>
+
+          <div class="prof-linha">
+            <div class="prof-aluno" data-label="Aluno">
+              <div class="prof-avatar-pequeno">👤</div>
+              <span>Daniel Cavalcante</span>
+            </div>
+
+            <span data-label="Turma">ADS204A</span>
+            <span data-label="Última submissão">09/10/2026</span>
+            <span data-label="Submissões">67</span>
+            <span class="prof-violacao" data-label="Méd. violações">ⓘ 2 ↘</span>
+
+            <button class="prof-acoes" type="button" data-label="Ações">
+              ☰
+            </button>
+          </div>
+
+          <!-- Repita .prof-linha para os demais alunos -->
+        </section>
+      </main>
+
+      <button
+        class="prof-menu-botao"
+        id="profMenuBotao"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="profSidebar"
+      >
+        ☰
+      </button>
+
+      <div class="prof-menu-overlay" id="profMenuOverlay"></div>
     </div>
+    <script src="./js/professor.js"></script>
   </body>
 </html>

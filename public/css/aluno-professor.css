@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+/* =========================
+   1. CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* =====================================
+   NOVO LAYOUT - PAINEL DO ALUNO
+   ===================================== */
+
+.Aluno-body {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f7fb;
+    color: #20273b;
+    font-family: 'Host Grotesk', sans-serif;
+}
+
+/* Sidebar */
+
+.Aluno-body .Lado-esquerdoAluno {
+    position: relative;
+    display: flex;
+    flex: 0 0 250px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+
+    width: 250px;
+    min-height: 100vh;
+    padding: 25px 18px;
+
+    background: #171d33;
+    color: #ffffff;
+    text-align: left;
+    text-shadow: none;
+}
+
+.Aluno-body .topo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 45px;
+}
+
+.Aluno-body .topo .logo {
+    width: 52px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.Aluno-body .logo-texto {
+    margin: 0;
+    color: #35aaa9;
+    font-family: 'Goldman', sans-serif;
+    font-size: 21px;
+    line-height: 1.25;
+}
+
+.Aluno-body .nome {
+    width: 100%;
+    margin-bottom: 35px;
+    color: #ffffff;
+}
+
+.Aluno-body .infoUser {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0;
+}
+
+.Aluno-body .imgUser {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.Aluno-body .nomeText {
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: 13px;
+}
+
+.Aluno-body .botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.Aluno-body .Analise-botão,
+.Aluno-body .Historico {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 44px;
+    height: auto;
+    padding: 10px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: #ffffff;
+
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transform: none;
+
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.Aluno-body .Analise-botão:hover,
+.Aluno-body .Historico:hover {
+    background: #252e49;
+    border-color: #34415f;
+}
+
+.Aluno-body .img-icon,
+.Aluno-body .Historico-img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transform: none;
+}
+
+.Aluno-body .logout {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: auto;
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+.Aluno-body .sign-out-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    width: 100%;
+    max-width: none;
+    min-height: 44px;
+    padding: 10px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: #ffffff;
+
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.Aluno-body .sign-out-btn:hover {
+    background: #252e49;
+}
+
+.Aluno-body .img-logout {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+/* Área principal */
+
+.Aluno-body .analise-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+
+    width: auto;
+    min-width: 0;
+    min-height: 100vh;
+    height: auto;
+    padding: 48px 36px;
+
+    background: #f5f7fb;
+    font-family: 'Host Grotesk', sans-serif;
+}
+
+.Aluno-body .analise-cabecalho {
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.Aluno-body .analise-container .login-titulo {
+    margin: 0 0 14px;
+    color: #171d33;
+    font-family: 'Goldman', sans-serif;
+    font-size: clamp(25px, 3vw, 34px);
+    line-height: 1.3;
+}
+
+.Aluno-body .analise-descricao {
+    margin: 0;
+    color: #667085;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Formulário */
+
+.Aluno-body .form-analise {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 950px;
+    min-width: 0;
+}
+
+.Aluno-body .form-analise label {
+    margin-top: 8px;
+    color: #20273b;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.Aluno-body .CaixaAnexo {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: 46px;
+    margin: 0 0 10px;
+    padding: 0 14px;
+
+    border: 1px solid #d1d9e6;
+    border-radius: 9px;
+    outline: none;
+    background: #ffffff;
+    color: #20273b;
+
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.Aluno-body .CaixaAnexo:focus {
+    border-color: #087ead;
+    box-shadow: 0 0 0 3px rgba(8, 126, 173, 0.12);
+}
+
+.Aluno-body .Area-codigo {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 380px;
+    max-height: 380px;
+    margin: 0 0 12px;
+    padding: 18px;
+
+    border: 1px solid #d1d9e6;
+    border-radius: 10px;
+    outline: none;
+    background: #ffffff;
+    color: #20273b;
+
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.Aluno-body .Area-codigo:focus {
+    border-color: #087ead;
+    box-shadow: 0 0 0 3px rgba(8, 126, 173, 0.12);
+}
+
+.Aluno-body .Comece_btn-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+
+    width: auto;
+    min-width: 175px;
+    min-height: 46px;
+    margin: 4px 0 0;
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 9px;
+    background: #087ead;
+    color: #ffffff;
+
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.Aluno-body .Comece_btn-login:hover {
+    background: #06658b;
+    transform: translateY(-1px);
+}
+
+/* Menu mobile: botão escondido no desktop */
+
+.Aluno-body .menu-hamburguer,
+.Aluno-body .menu-overlay {
+    display: none;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .Aluno-body .Lado-esquerdoAluno {
+        flex-basis: 220px;
+        width: 220px;
+        padding: 22px 14px;
+    }
+
+    .Aluno-body .analise-container {
+        padding: 38px 24px;
+    }
+
+    .Aluno-body .analise-cabecalho {
+        margin-bottom: 24px;
+    }
+}
+
+/* Celular: sidebar deslizante */
+
+@media (max-width: 600px) {
+    .Aluno-body {
+        display: block;
+        min-height: 100vh;
+    }
+
+    .Aluno-body .menu-hamburguer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 1002;
+
+        width: 46px;
+        height: 46px;
+        padding: 0;
+
+        border: 1px solid #34415f;
+        border-radius: 10px;
+        background: #171d33;
+        color: #ffffff;
+
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    .Aluno-body .Lado-esquerdoAluno {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1001;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        width: min(280px, 85vw);
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+        padding: 78px 18px 22px;
+        gap: 0;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: #171d33;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.2);
+
+        transform: translateX(-105%);
+        visibility: hidden;
+        pointer-events: none;
+
+        transition: transform 0.3s ease, visibility 0.3s ease;
+    }
+
+    .Aluno-body .Lado-esquerdoAluno.menu-aberto {
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .Aluno-body .topo {
+        margin-bottom: 32px;
+        gap: 8px;
+    }
+
+    .Aluno-body .topo .logo {
+        width: 44px;
+    }
+
+    .Aluno-body .logo-texto {
+        font-size: 19px;
+    }
+
+    .Aluno-body .nome {
+        margin-bottom: 28px;
+    }
+
+    .Aluno-body .logout {
+        margin-top: auto;
+    }
+
+    .Aluno-body .menu-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+
+        background: rgba(10, 15, 30, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .Aluno-body .menu-overlay.overlay-aberto {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .Aluno-body .analise-container {
+        width: 100%;
+        min-width: 0;
+        min-height: 100vh;
+        padding: 82px 18px 30px;
+    }
+
+    .Aluno-body .analise-cabecalho {
+        margin-bottom: 24px;
+    }
+
+    .Aluno-body .analise-container .login-titulo {
+        font-size: 27px;
+    }
+
+    .Aluno-body .analise-descricao {
+        font-size: 14px;
+    }
+
+    .Aluno-body .form-analise {
+        gap: 9px;
+    }
+
+    .Aluno-body .Area-codigo {
+        min-height: 280px;
+        height: 350px;
+        padding: 13px;
+        font-size: 13px;
+    }
+
+    .Aluno-body .Comece_btn-login {
+        width: 100%;
+        align-self: stretch;
+    }
+}
+
+/* Celulares estreitos */
+
+@media (max-width: 360px) {
+    .Aluno-body .analise-container {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .Aluno-body .analise-container .login-titulo {
+        font-size: 24px;
+    }
+}
+
+/* Acessibilidade: reduzir animações */
+
+@media (prefers-reduced-motion: reduce) {
+    .Aluno-body .Lado-esquerdoAluno,
+    .Aluno-body .menu-overlay,
+    .Aluno-body .Comece_btn-login {
+        transition: none;
+    }
+}

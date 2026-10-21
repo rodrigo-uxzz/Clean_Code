@@ -1,33 +1,124 @@
+
 <!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Painel do Aluno - Mentor de Clean Code</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body class="login-body">
-    <nav>
-      <img class="logo" src="./img/logo-mark.png" alt="Logo" />
-      <p class="logo-texto">Clean Code - Área do Aluno</p>
-      <button class="sign-in-btn" onclick="window.location.href='/'">Sair</button>
-    </nav>
 
-    <div class="login-container" style="flex-direction: column; padding: 40px;">
-      <h2 class="login-titulo" style="color: white;">Envie seu Algoritmo</h2>
-      
-      <textarea 
-        id="codigoInput" 
-        rows="15" 
-        style="width: 80%; max-width: 800px; padding: 15px; border-radius: 8px; background: rgba(0,0,0,0.3); color: #35AAA9; border: 1px solid #16526C; font-family: monospace;" 
-        placeholder="Cole seu código Java, Python, etc. aqui..."></textarea>
-      
-      <button class="Comece btn-login" style="width: 200px; margin-top: 20px;">Analisar Código</button>
+    <link rel="stylesheet" href="./css/aluno-professor.css">
+    <link rel="icon" type="image/x-icon" href="./img/logo-mark.png">
+</head>
 
-      <div style="margin-top: 30px; width: 80%; max-width: 800px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px dashed #35AAA9;">
-        <h3 style="color: #35AAA9; font-family: 'Goldman', sans-serif;">Feedback do Mentor:</h3>
-        <p style="color: #c0c0c0; margin-top: 10px;">A IA processará a estrutura e retornará as sugestões aqui...</p>
-      </div>
-    </div>
-  </body>
+<body class="Aluno-body">
+
+    <!-- Botão do menu para celular -->
+    <button
+        class="menu-hamburguer"
+        id="menuHamburguer"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="sidebarAluno"
+        type="button"
+    >
+        ☰
+    </button>
+
+    <!-- Fundo escuro do menu mobile -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Barra lateral -->
+    <aside class="Lado-esquerdoAluno" id="sidebarAluno">
+
+        <div class="topo">
+            <img class="logo" src="./img/logo-mark.png" alt="Logo Clean Code">
+            <h1 class="logo-texto">Clean Code</h1>
+        </div>
+
+        <div class="nome">
+            <div class="infoUser">
+                <img class="imgUser" src="./img/avatar.png" alt="Foto do usuário">
+                <p class="nomeText">Nome do usuário</p>
+            </div>
+        </div>
+
+        <nav class="botoes" aria-label="Menu do aluno">
+            <button class="Analise-botão" type="button">
+                <img
+                    class="img-icon"
+                    src="./img/alem-disso-positivo-adicionar-simbolo-matematico-removebg-preview.png"
+                    alt=""
+                >
+                Nova análise
+            </button>
+
+            <button class="Historico" type="button">
+                <img
+                    class="Historico-img"
+                    src="./img/Rotate ccw.png"
+                    alt=""
+                >
+                Meu histórico
+            </button>
+        </nav>
+
+        <div class="logout">
+            <button class="sign-out-btn" type="button" onclick="window.location.href='/'">
+                Logout
+                <img
+                    class="img-logout"
+                    src="./img/enter-removebg-preview.png"
+                    alt=""
+                >
+            </button>
+        </div>
+
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="analise-container">
+
+        <header class="analise-cabecalho">
+            <h1 class="login-titulo">Nova Análise</h1>
+
+            <p class="analise-descricao">
+                Envie seu código para receber o feedback do Clean Code.
+            </p>
+        </header>
+
+        <form class="form-analise" id="formAnalise">
+
+            <label for="tituloInput">Título da submissão</label>
+
+            <input
+                type="text"
+                class="CaixaAnexo"
+                id="tituloInput"
+                name="titulo"
+                placeholder="Ex.: Sistema de cadastro"
+                required
+            >
+
+            <label for="codigoInput">Código-fonte</label>
+
+            <textarea
+                class="Area-codigo"
+                id="codigoInput"
+                name="codigo"
+                placeholder="Cole seu código Java, Python, etc. aqui..."
+                spellcheck="false"
+                required
+            ></textarea>
+
+            <button class="Comece_btn-login" type="submit">
+                Analisar código
+            </button>
+
+        </form>
+
+    </main>
+
+    <script src="./js/aluno.js"></script>
+</body>
 </html>

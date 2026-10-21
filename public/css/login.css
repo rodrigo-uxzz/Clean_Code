@@ -1,0 +1,410 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+/* =========================
+   1. CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.login-body {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Goldman', sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================
+   2. PAINEL ESQUERDO
+========================= */
+
+.lado-esquerdo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    width: 40%;
+    min-width: 0;
+    min-height: 100vh;
+    padding: 40px 25px;
+
+    background-color: #171d33;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 2px 2px 4px black;
+}
+
+.login-titulo {
+    font-size: clamp(28px, 3vw, 45px);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.lado-esquerdo .subtitulo {
+    font-size: clamp(18px, 2vw, 30px);
+    line-height: 1.4;
+    margin: 0 0 20px;
+}
+
+/* =========================
+   3. PAINEL DIREITO
+========================= */
+
+.lado-direito {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    width: 60%;
+    min-width: 0;
+    min-height: 100vh;
+    padding: 40px;
+
+    background-color: #ffffff;
+    color: #171d33;
+}
+
+.lado-direito > img {
+    display: block;
+    width: 100px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.Nomeclean {
+    margin: -10px 0 10px;
+    color: #2b7992;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: clamp(28px, 3vw, 38px);
+    text-align: center;
+}
+
+/* =========================
+   4. FORMULÁRIO DE LOGIN
+========================= */
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    width: 100%;
+    max-width: 360px;
+}
+
+#loginForm input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 20px;
+
+    background-color: #f2f2f2;
+    color: #333333;
+
+    border: none;
+    border-radius: 25px;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 16px;
+    outline: none;
+
+    transition: background-color 0.2s ease;
+}
+
+#loginForm input::placeholder {
+    color: #a6a6a6;
+}
+
+#loginForm input:focus {
+    background-color: #e8e8e8;
+}
+
+/* =========================
+   5. BOTÕES
+========================= */
+
+.Criar-conta,
+.Comece-btn-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 170px;
+    min-height: 42px;
+    padding: 8px 14px;
+
+    background-color: #20273b;
+    color: #ffffff;
+
+    border: 2px solid #087ead;
+    border-radius: 25px;
+
+    font-family: 'Goldman', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.Comece-btn-login {
+    margin-top: 5px;
+}
+
+.Criar-conta:hover,
+.Comece-btn-login:hover {
+    background-color: #35aaa9;
+}
+
+.Criar-conta:focus-visible,
+.Comece-btn-login:focus-visible {
+    outline: 2px solid #087ead;
+    outline-offset: 3px;
+}
+
+/* =========================
+   6. MENSAGEM DE ERRO
+========================= */
+
+.mensagem-erro {
+    color: #c62828;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   7. MODAL
+========================= */
+
+.modal-container {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    background-color: rgba(23, 29, 51, 0.6);
+    backdrop-filter: blur(4px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-container.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    text-align: center;
+    overflow-wrap: anywhere;
+
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-container.active .modal-content {
+    transform: translateY(0);
+}
+
+#modal-texto {
+    margin: 0;
+    font-family: 'Goldman', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Modal de sucesso */
+
+.modal-container.cr7 .modal-content {
+    border: 3px solid #35aaa9;
+}
+
+.modal-container.cr7 #modal-texto {
+    color: #2b7992;
+}
+
+/* Modal de erro */
+
+.modal-container.erro-status .modal-content {
+    border: 3px solid #c62828;
+}
+
+.modal-container.erro-status #modal-texto {
+    color: #c62828;
+}
+
+/* =========================
+   8. TABLETS
+========================= */
+
+@media (max-width: 1024px) {
+    .lado-esquerdo {
+        width: 40%;
+        padding: 30px 18px;
+        gap: 25px;
+    }
+
+    .lado-direito {
+        width: 60%;
+        padding: 30px;
+    }
+
+    .lado-direito > img {
+        width: 85px;
+    }
+
+    #loginForm {
+        max-width: 340px;
+    }
+}
+
+/* =========================
+   9. CELULARES
+========================= */
+
+@media (max-width: 600px) {
+    .login-body {
+        flex-direction: column-reverse;
+        min-height: 100vh;
+    }
+
+    .lado-esquerdo {
+        width: 100%;
+        min-height: auto;
+        padding: 35px 20px 30px;
+        gap: 18px;
+    }
+
+    .login-titulo {
+        font-size: clamp(27px, 7vw, 36px);
+    }
+
+    .lado-esquerdo .subtitulo {
+        font-size: clamp(17px, 4.5vw, 21px);
+        margin: 0;
+    }
+
+    .lado-esquerdo br {
+        display: none;
+    }
+
+    .Criar-conta {
+        width: 160px;
+    }
+
+    .lado-direito {
+        width: 100%;
+        min-height: auto;
+        flex: 1;
+        padding: 35px 22px 45px;
+        gap: 18px;
+    }
+
+    .lado-direito > img {
+        width: 75px;
+    }
+
+    .Nomeclean {
+        font-size: 30px;
+        margin: -5px 0 8px;
+    }
+
+    #loginForm {
+        width: 100%;
+        max-width: 400px;
+        gap: 18px;
+    }
+
+    #loginForm input {
+        padding: 14px 18px;
+        font-size: 16px;
+    }
+
+    .Comece-btn-login {
+        margin-top: 5px;
+    }
+
+    .mensagem-erro {
+        max-width: 100%;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        max-width: 360px;
+        padding: 25px 20px;
+    }
+}
+
+/* =========================
+   10. CELULARES PEQUENOS
+========================= */
+
+@media (max-width: 360px) {
+    .lado-esquerdo {
+        padding: 30px 15px 25px;
+    }
+
+    .lado-direito {
+        padding: 30px 16px 35px;
+    }
+
+    .login-titulo {
+        font-size: 26px;
+    }
+
+    .lado-esquerdo .subtitulo {
+        font-size: 16px;
+    }
+
+    .lado-direito > img {
+        width: 65px;
+    }
+
+    .Nomeclean {
+        font-size: 27px;
+    }
+}
