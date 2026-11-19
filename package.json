@@ -1,9 +1,12 @@
+
 {
-  "name": "cleancoed",
+  "name": "cleancode",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Projeto Mentor de Clean Code",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/rodrigo-uxzz/Clean_Code/issues"
   },
-  "homepage": "https://github.com/rodrigo-uxzz/Clean_Code#readme",
+  "homepage": "https://rodrigo-uxzz.github.io/Clean_Code/",
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
     "dotenv": "^17.4.2",
