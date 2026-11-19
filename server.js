@@ -42,7 +42,6 @@ app.post('/api/login', async (req, res) => {
             });
         }
 
-        // Consulta ao Supabase
         const { data, error } = await supabase
             .from('usuarios')
             .select('role')
@@ -50,7 +49,22 @@ app.post('/api/login', async (req, res) => {
             .eq('senha', senha)
             .single();
 
-        if (error || !data) {
+         if (error) {
+            console.error('ERRO SUPABASE:', {
+                code: error.code,
+                message: error.message,
+                details: error.details
+            });
+        
+            return res.status(500).json({
+                success: false,
+                message: 'Erro ao consultar o Supabase.'
+            });
+        }
+        
+        if (!data) {
+            console.log('LOGIN: nenhum usuário encontrado');
+        
             return res.status(401).json({
                 success: false,
                 message: 'E-mail ou senha inválidos.'
