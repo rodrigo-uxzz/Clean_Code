@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br" class="notranslate" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar senha - Clean Code</title>
+    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="icon" type="image/x-icon" href="img/logo-mark.png" />
+  </head>
+  <body class="login-body">
+    <div class="lado-esquerdo">
+      <h1 class="login-titulo">
+        RECUPERE<br />
+        SUA SENHA
+      </h1>
+      <h2 class="subtitulo">
+        Enviaremos um código de 6 dígitos<br />
+        para o seu e-mail.
+      </h2>
+      <button class="Criar-conta" onclick="window.location.href='/login'">Voltar ao login</button>
+    </div>
+
+    <div class="lado-direito">
+      <img src="img/logo-mark.png" alt="Logo Clean code" />
+      <h1 class="Nomeclean">Clean Code</h1>
+
+      <!-- Etapa 1: e-mail -->
+      <form id="formSolicitar">
+        <input type="email" id="emailRecuperacao" required placeholder="Email" />
+        <button type="submit" class="Comece-btn-login" id="btnSolicitar">Enviar código</button>
+      </form>
+
+      <!-- Etapa 2: código e nova senha -->
+      <form id="formConfirmar" hidden>
+        <p class="recuperacao-info" id="infoEtapa">Digite o código enviado para o seu e-mail.</p>
+        <input
+          type="text"
+          id="codigoRecuperacao"
+          inputmode="numeric"
+          autocomplete="one-time-code"
+          maxlength="6"
+          pattern="\d{6}"
+          required
+          placeholder="Código de 6 dígitos"
+        />
+        <input type="password" id="novaSenha" minlength="6" required placeholder="Nova senha" />
+        <input type="password" id="confirmarSenha" minlength="6" required placeholder="Confirmar nova senha" />
+        <button type="submit" class="Comece-btn-login" id="btnConfirmar">Redefinir senha</button>
+        <button type="button" class="recuperacao-link" id="btnReenviar">Não recebi o código</button>
+      </form>
+
+      <p id="mensagemRecuperacao" class="mensagem-erro" role="status"></p>
+    </div>
+
+    <script src="./js/recuperar-senha.js"></script>
+  </body>
+</html>

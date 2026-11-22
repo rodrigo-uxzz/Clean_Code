@@ -408,3 +408,38 @@ body {
         font-size: 27px;
     }
 }
+
+/* ===== Recuperação de senha ===== */
+.esqueci-senha {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.esqueci-senha a,
+.recuperacao-link {
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.recuperacao-link {
+  display: block;
+  margin: 12px auto 0;
+}
+
+.recuperacao-info {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.mensagem-sucesso {
+  color: #1f7a3d;
+}
+
+#formConfirmar[hidden],
+#formSolicitar[hidden] {
+  display: none;
+}

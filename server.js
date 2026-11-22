@@ -24,6 +24,14 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// Página de recuperação de senha
+app.get('/recuperar-senha', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'recuperar-senha.html'));
+});
+
+// API de recuperação de senha (solicitar código e redefinir)
+app.use('/api/recuperar-senha', require('./src/routes/recuperacaoSenha'));
+
 // API de login
 app.post('/api/login', async (req, res) => {
     try {

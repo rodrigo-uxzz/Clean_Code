@@ -42,6 +42,14 @@ Crie um arquivo chamado `.env` na raiz do projeto e adicione suas credenciais do
 ```text
 SUPABASE_URL=[https://sua-url-aqui.supabase.co](https://sua-url-aqui.supabase.co)
 SUPABASE_KEY=sua-anon-key-aqui
+
+# Recuperação de senha (e-mail com código)
+RECUPERACAO_SECRET=uma-string-longa-e-aleatoria
+SMTP_HOST=smtp.seuprovedor.com
+SMTP_PORT=587
+SMTP_USER=seu-usuario-smtp
+SMTP_PASS=sua-senha-smtp
+SMTP_FROM="Clean Code <no-reply@seudominio.com>"
 ```
 
 ## 🗄️ Configuração do Banco de Dados
@@ -69,8 +77,20 @@ CREATE TABLE submissoes (
     criado_em TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW())
 );
 
+-- Códigos de recuperação de senha (guardados apenas em hash)
+CREATE TABLE recuperacao_senha (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    usuario_id UUID REFERENCES usuarios(id) ON DELETE CASCADE,
+    codigo_hash VARCHAR(64) NOT NULL,
+    expira_em TIMESTAMP WITH TIME ZONE NOT NULL,
+    tentativas INTEGER NOT NULL DEFAULT 0,
+    usado BOOLEAN NOT NULL DEFAULT FALSE,
+    criado_em TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW())
+);
+
 -- Permissão de leitura/escrita para a API (Testes de desenvolvimento)
 ALTER TABLE usuarios DISABLE ROW LEVEL SECURITY;
+ALTER TABLE recuperacao_senha DISABLE ROW LEVEL SECURITY;
 
 -- Usuários de teste
 INSERT INTO usuarios (nome, email, senha, role) VALUES
