@@ -37,3 +37,22 @@ window.addEventListener("resize", () => {
         fecharMenu();
     }
 });
+
+async function logout() {
+    try {
+        const resposta = await fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'same-origin'
+        });
+
+        if (!resposta.ok) {
+            throw new Error('Erro ao sair');
+        }
+
+        window.location.replace('/login');
+
+    } catch (erro) {
+        console.error('Erro no logout:', erro);
+        alert('Não foi possível sair. Tente novamente.');
+    }
+}

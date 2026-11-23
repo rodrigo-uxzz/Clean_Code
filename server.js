@@ -3,41 +3,104 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const supabase = require('./src/config/database');
 
 const app = express();
 
-// Middlewares
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET não configurada no .env');
+}
+
+//  MIDDLEWARES 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-// Arquivos estáticos (HTML, CSS, JS e imagens)
-app.use(express.static(path.join(__dirname, 'public')));
+//  VERIFICAR AUTENTICAÇÃO 
+function verificarAutenticacao(req, res, next) {
+    const token = req.cookies.cc_session;
 
-// Página inicial
+    if (!token) {
+        return res.redirect('/login');
+    }
+
+    try {
+        req.usuario = jwt.verify(token, JWT_SECRET);
+        next();
+    } catch (erro) {
+        res.clearCookie('cc_session', { path: '/' });
+        return res.redirect('/login');
+    }
+}
+
+//  VERIFICAR PERFIL    
+function verificarPerfil(role) {
+    return (req, res, next) => {
+        if (req.usuario.role !== role) {
+            return res.status(403).send('Acesso negado.');
+        }
+
+        next();
+    };
+}
+
+//  PÁGINAS PÚBLICAS 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Página de login
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// Página de recuperação de senha
 app.get('/recuperar-senha', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'recuperar-senha.html'));
+    res.sendFile(
+        path.join(__dirname, 'public', 'recuperar-senha.html')
+    );
 });
 
-// API de recuperação de senha (solicitar código e redefinir)
-app.use('/api/recuperar-senha', require('./src/routes/recuperacaoSenha'));
+//  PÁGINAS PROTEGIDAS 
+app.get(
+    '/aluno.html',
+    verificarAutenticacao,
+    verificarPerfil('aluno'),
+    (req, res) => {
+        res.set('Cache-Control', 'no-store');
 
-// API de login
+        res.sendFile(
+            path.join(__dirname, 'private', 'aluno.html')
+        );
+    }
+);
+
+app.get(
+    '/professor.html',
+    verificarAutenticacao,
+    verificarPerfil('professor'),
+    (req, res) => {
+        res.set('Cache-Control', 'no-store');
+
+        res.sendFile(
+            path.join(__dirname, 'private', 'professor.html')
+        );
+    }
+);
+
+//  API DE RECUPERAÇÃO DE SENHA 
+app.use(
+    '/api/recuperar-senha',
+    require('./src/routes/recuperacaoSenha')
+);
+
+//  API DE LOGIN 
 app.post('/api/login', async (req, res) => {
     try {
         const { email, senha } = req.body;
 
-        // Validação dos campos
         if (
             typeof email !== 'string' ||
             typeof senha !== 'string' ||
@@ -50,43 +113,54 @@ app.post('/api/login', async (req, res) => {
             });
         }
 
-        const { data, error } = await supabase
+        const { data: usuario, error } = await supabase
             .from('usuarios')
-            .select('role')
-            .eq('email', email)
+            .select('id, role')
+            .eq('email', email.trim())
             .eq('senha', senha)
-            .single();
+            .maybeSingle();
 
-         if (error) {
-            console.error('ERRO SUPABASE:', {
-                code: error.code,
-                message: error.message,
-                details: error.details
-            });
-        
+        if (error) {
+            console.error('Erro Supabase:', error);
+
             return res.status(500).json({
                 success: false,
                 message: 'Erro ao consultar o Supabase.'
             });
         }
-        
-        if (!data) {
-            console.log('LOGIN: nenhum usuário encontrado');
-        
+
+        if (!usuario) {
             return res.status(401).json({
                 success: false,
                 message: 'E-mail ou senha inválidos.'
             });
         }
 
-        return res.status(200).json({
-            success: true,
-            role: data.role,
-            message: `Bem-vindo! Acesso liberado como ${data.role}.`
+        const token = jwt.sign(
+            {
+                id: usuario.id,
+                role: usuario.role
+            },
+            JWT_SECRET,
+            { expiresIn: '2h' }
+        );
+
+        res.cookie('cc_session', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/',
+            maxAge: 2 * 60 * 60 * 1000
         });
 
-    } catch (error) {
-        console.error('Erro na API de login:', error);
+        return res.status(200).json({
+            success: true,
+            role: usuario.role,
+            message: `Bem-vindo! Acesso liberado como ${usuario.role}.`
+        });
+
+    } catch (erro) {
+        console.error('Erro na API de login:', erro);
 
         return res.status(500).json({
             success: false,
@@ -95,15 +169,61 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Configuração da porta
+//  VERIFICAR SESSÃO 
+app.get('/api/sessao', (req, res) => {
+    const token = req.cookies.cc_session;
+
+    if (!token) {
+        return res.status(401).json({
+            autenticado: false
+        });
+    }
+
+    try {
+        const usuario = jwt.verify(token, JWT_SECRET);
+
+        return res.json({
+            autenticado: true,
+            role: usuario.role
+        });
+    } catch {
+        return res.status(401).json({
+            autenticado: false
+        });
+    }
+});
+
+//  LOGOUT 
+app.post('/api/logout', (req, res) => {
+    res.clearCookie('cc_session', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/'
+    });
+
+    res.set('Cache-Control', 'no-store');
+
+    return res.json({
+        success: true,
+        message: 'Logout realizado com sucesso.'
+    });
+});
+
+//  ARQUIVOS PÚBLICOS 
+// Manter depois das rotas protegidas.
+app.use(express.static(
+    path.join(__dirname, 'public'),
+    { index: false }
+));
+
+//  SERVIDOR 
 const PORT = process.env.PORT || 3000;
 
-// Execução local do servidor
 if (require.main === module) {
     app.listen(PORT, '0.0.0.0', () => {
         console.log(`Servidor rodando em http://localhost:${PORT}`);
     });
 }
 
-// Exportação para ambientes de hospedagem
 module.exports = app;
