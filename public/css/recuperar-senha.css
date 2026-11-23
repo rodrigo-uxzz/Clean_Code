@@ -1,0 +1,74 @@
+#formSolicitar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    width: 100%;
+    max-width: 360px;
+}
+
+#formSolicitar input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 20px;
+
+    background-color: #f2f2f2;
+    color: #333333;
+
+    border: none;
+    border-radius: 25px;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 16px;
+    outline: none;
+
+    transition: background-color 0.2s ease;
+}
+
+#formSolicitar input::placeholder {
+    color: #a6a6a6;
+}
+
+#formSolicitar input:focus {
+    background-color: #e8e8e8;
+}
+
+
+
+
+#formConfirmar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    width: 100%;
+    max-width: 360px;
+}
+
+#formConfirmar input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 20px;
+
+    background-color: #f2f2f2;
+    color: #333333;
+
+    border: none;
+    border-radius: 25px;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 16px;
+    outline: none;
+
+    transition: background-color 0.2s ease;
+}
+
+#formConfirmar input::placeholder {
+    color: #a6a6a6;
+}
+
+#formConfirmar input:focus {
+    background-color: #e8e8e8;
+}

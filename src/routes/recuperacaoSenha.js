@@ -1,6 +1,6 @@
 // Rotas da recuperação de senha: /api/recuperar-senha/*
 const express = require('express');
-const supabase = require('../config/database');
+const supabase = require('../config/databaseAdmin');
 const { enviarCodigoRecuperacao } = require('../services/email');
 const { solicitarRecuperacao, redefinirSenha } = require('../services/recuperacaoSenha');
 

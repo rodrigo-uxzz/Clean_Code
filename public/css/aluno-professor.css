@@ -256,7 +256,7 @@ body {
 .Aluno-body .form-analise label {
     margin-top: 8px;
     color: #20273b;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
 }
 
@@ -272,8 +272,8 @@ body {
     border: 1px solid #d1d9e6;
     border-radius: 9px;
     outline: none;
-    background: #ffffff;
-    color: #20273b;
+    background: #20273b;
+    color: #fff;
 
     font-family: 'Host Grotesk', sans-serif;
     font-size: 14px;
@@ -291,16 +291,16 @@ body {
     width: 100%;
     max-width: none;
     min-width: 0;
-    min-height: 380px;
-    max-height: 380px;
+    min-height: 350px;
+    max-height: 350px;
     margin: 0 0 12px;
     padding: 18px;
 
     border: 1px solid #d1d9e6;
     border-radius: 10px;
     outline: none;
-    background: #ffffff;
-    color: #20273b;
+    background: #20273b;
+    color: #fff;
 
     font-family: Consolas, 'Courier New', monospace;
     font-size: 14px;
